@@ -1,0 +1,107 @@
+#Implement a recursive function in Python to calculate the factorial of a given integer.
+def factorial(n):
+    if n == 0 or n == 1:  # Base case
+        return 1
+    return n * factorial(n - 1)
+
+num = 5
+print("Factorial:", factorial(num))
+
+#Write a recursive function to determine if a string is a palindrome.
+
+def is_palindrome(s):
+    if len(s) <= 1:  # Base case
+        return True
+
+    if s[0] != s[-1]:
+        return False
+
+    return is_palindrome(s[1:-1])
+
+text = "madam"
+print("Palindrome:", is_palindrome(text))
+
+
+#Create a recursive function to calculate the sum of all numbers in a list.
+def list_sum(nums):
+    if len(nums) == 0:  # Base case
+        return 0
+
+    return nums[0] + list_sum(nums[1:])
+
+numbers = [10, 20, 30, 40]
+print("Sum:", list_sum(numbers))
+
+#Develop a recursive function to find the maximum value in a list of integers.
+
+def find_max(nums):
+    if len(nums) == 1:  # Base case
+        return nums[0]
+
+    max_rest = find_max(nums[1:])
+
+    if nums[0] > max_rest:
+        return nums[0]
+    else:
+        return max_rest
+
+numbers = [5, 12, 8, 20, 3]
+print("Maximum:", find_max(numbers))
+
+
+#Implement a recursive binary search algorithm to find an element in a sorted list.
+
+def binary_search(arr, target, low, high):
+    if low > high:
+        return -1
+
+    mid = (low + high) // 2
+
+    if arr[mid] == target:
+        return mid
+    elif target < arr[mid]:
+        return binary_search(arr, target, low, mid - 1)
+    else:
+        return binary_search(arr, target, mid + 1, high)
+
+arr = [2, 4, 6, 8, 10, 12]
+target = 8
+
+result = binary_search(arr, target, 0, len(arr) - 1)
+
+if result != -1:
+    print("Element found at index:", result)
+else:
+    print("Element not found")
+    
+
+
+#Write a recursive function to generate the Fibonacci sequence up to the nth term.
+def fibonacci(n):
+    if n <= 1:
+        return n
+
+    return fibonacci(n - 1) + fibonacci(n - 2)
+
+n = 10
+
+print("Fibonacci Series:")
+for i in range(n):
+    print(fibonacci(i), end=" ")
+    
+
+
+#Use recursion to solve the Tower of Hanoi problem, where you need to move disks from one peg to another subject to certain constraints.
+def tower_of_hanoi(n, source, auxiliary, destination):
+    if n == 1:
+        print(f"Move disk 1 from {source} to {destination}")
+        return
+
+    tower_of_hanoi(n - 1, source, destination, auxiliary)
+
+    print(f"Move disk {n} from {source} to {destination}")
+
+    tower_of_hanoi(n - 1, auxiliary, source, destination)
+
+n = 3
+tower_of_hanoi(n, 'A', 'B', 'C')
